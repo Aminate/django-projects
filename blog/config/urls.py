@@ -16,7 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from post.views import poats_list
 
-urlpatterns = [
+urlpatterns = [                #это список
     path('admin/', admin.site.urls),
+    path('listing/', poats_list),
 ]
+
