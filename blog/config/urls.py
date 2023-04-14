@@ -16,10 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from post.views import poats_list
+from post.views import posts_list, posts_list_api_view, post_details, create_post, delete_post, update_post
+from review.views import toggle_like
 
-urlpatterns = [                #это список
+urlpatterns = [
     path('admin/', admin.site.urls),
-    path('listing/', poats_list),
+    path('listing/', posts_list),
+    path('api/listing/', posts_list_api_view),
+    path('api/details/<int:id>/', post_details),
+    path('api/create/', create_post),
+    path('api/delete/<int:id>/', delete_post),
+    path('api/update/<int:id>/', update_post),
+    path('api/like/<int:id>/', toggle_like),
 ]
-

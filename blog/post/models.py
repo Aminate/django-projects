@@ -14,4 +14,3 @@ class Post(models.Model):
     create_at = models.DateTimeField(auto_now_add=True)       #когда создавалась
 
 
-
