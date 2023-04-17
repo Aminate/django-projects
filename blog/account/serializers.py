@@ -19,3 +19,8 @@ class RegisterUserSerializer(ModelSerializer):
     def create(self, validated_data):   #validated_data - проверенные данные
         return User.objects.create_user(**validated_data)
     
+
+class UserSerializer(ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('email', 'username')

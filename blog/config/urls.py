@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from post.views import posts_list, posts_list_api_view, post_details, create_post, delete_post, update_post
 from review.views import toggle_like, toggle_comment
-from account.views import RegisterUserAPIView
+from account.views import RegisterUserAPIView, users_list_api_view
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
@@ -38,4 +38,6 @@ urlpatterns = [
     path('api/register/', RegisterUserAPIView.as_view()), 
     path('api/token/', TokenObtainPairView.as_view()),
     path('api/token/refresh', TokenRefreshView.as_view()),
+    path('api/users/',users_list_api_view),
+    
 ]
