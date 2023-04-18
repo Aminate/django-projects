@@ -1,5 +1,7 @@
+from rest_framework.generics import CreateAPIView, UpdateAPIView, DestroyAPIView
 from rest_framework.decorators import api_view  #это - функции, чтобы отвечала на запросы
 from rest_framework.response import Response   # это - чтобы получать ответ на запрос
+from rest_framework.permissions import IsAuthenticated
 from django.shortcuts import get_object_or_404  # это - для того чтоб вытыщить обьект, а если нет то ошибка 404 
 #нихуя не понялa
 
@@ -52,3 +54,21 @@ def toggle_comment(request, id):
     serializer.save()
     Comment.objects.create(user=user, post=post, text=text)
     return Response(serializer.data, status=201)
+
+
+
+class CreateCommentAPIView(CreateAPIView):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
+    permission_classes = [IsAuthenticated]
+
+class UpdateCommentAPIView(UpdateAPIView):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
+    permission_classes = [IsAuthenticated]
+
+class DeleteCommentAPIView(DestroyAPIView):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
+    permission_classes = [IsAuthenticated]
+

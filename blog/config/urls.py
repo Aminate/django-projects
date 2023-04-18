@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from post.views import posts_list, posts_list_api_view, post_details, create_post, delete_post, update_post
-from review.views import toggle_like, toggle_comment
+from review.views import toggle_like, toggle_comment, CreateCommentAPIView, UpdateCommentAPIView, DeleteCommentAPIView
 from account.views import RegisterUserAPIView, users_list_api_view
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
@@ -34,10 +34,13 @@ urlpatterns = [
     path('api/delete/<int:id>/', delete_post),
     path('api/update/<int:id>/', update_post),
     path('api/like/<int:id>/', toggle_like),
-    path('api/comment/<int:id>/', toggle_comment),
+    # path('api/comment/<int:id>/', toggle_comment),
     path('api/register/', RegisterUserAPIView.as_view()), 
     path('api/token/', TokenObtainPairView.as_view()),
-    path('api/token/refresh', TokenRefreshView.as_view()),
+    path('api/token/refresh/', TokenRefreshView.as_view()),
     path('api/users/',users_list_api_view),
+    path('api/comment/create/', CreateCommentAPIView.as_view()), #as_view - делает из класса функцию
+    path('api/comment/update/<int:pk>/', UpdateCommentAPIView.as_view()),
+    path('api/comment/delete/<int:pk>/', DeleteCommentAPIView.as_view()),
     
 ]
